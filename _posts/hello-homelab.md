@@ -5,4 +5,4 @@ date: 2023-11-11
 
 # Welcome
 
-Hello and welcome
+Hello and welcome to my homelab docs site!
