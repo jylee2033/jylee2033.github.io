@@ -2,6 +2,8 @@
 layout: post
 title: Embedded Pacman Game with BeagleBone
 date: 2023-11-12 05:10 -0800
+categories: [Embedded Systems]
+tags: [Embedded Systems, Pacman, Beaglebone]
 ---
 <img src="/assets/images/image.png" alt="Demo Picture" width="300" style="margin-right: 10px;"> <br>
 
