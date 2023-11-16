@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Embedded Pacman Game with BeagleBone
-date: 2023-11-12 05:10 -0800
+date: 2023-04-12 05:10 -0800
 categories: [Embedded Systems]
 tags: [Embedded Systems, Pacman, Beaglebone]
 ---
-<img src="/assets/images/image.png" alt="Demo Picture" width="300" style="margin-right: 10px;"> <br>
+<img src="/assets/images/demo.png" alt="Demo Picture" width="300" style="margin-right: 10px;"> <br>
 
 <a href="https://clipchamp.com/watch/kbTIQFkowRK?utm_source=share&utm_medium=social&utm_campaign=watch">Demo Video</a>
 
