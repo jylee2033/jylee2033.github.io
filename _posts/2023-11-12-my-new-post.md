@@ -5,11 +5,14 @@ date: 2023-11-12 05:10 -0800
 ---
 
 # Embedded Pacman Game with BeagleBone
-Demo Video
 
-**NOTE** This is not the most up to date demo video. Project was more completed like having a Game Over screen and less flickering on our 433 demo day.
+<p align="center">
+  <img src="image.png" alt="Demo Picture" width="150" style="margin-right: 10px;">
+  <img src="image-1.png" alt="Description" width="150"> <br>
+  <a href="https://clipchamp.com/watch/kbTIQFkowRK?utm_source=share&utm_medium=social&utm_campaign=watch">Demo Video</a>
+</p>
 
-https://clipchamp.com/watch/kbTIQFkowRK?utm_source=share&utm_medium=social&utm_campaign=watch
+**NOTE:** This is not the most up to date demo video. Project was more completed like having a Game Over screen and less flickering on our demo day.
 
 System Explanation:
 We developed a Pacman game on a Beaglebone using an external USB joystick for input, a 16x32 LED matrix panel for display, a headset connected to Zen Cape's audio jack for game music, and a web page to display the game map, guide, and scores.
