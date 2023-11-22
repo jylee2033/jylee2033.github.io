@@ -6,8 +6,12 @@ categories: [Computational Data Science]
 tags: [Computational Data Science, Airbnb]
 ---
 # Motivation
+In this project, we focused on providing Airbnb lists to people who are looking for places that match their traveling style. Since everyone has different preferences, travellers from other countries or provinces need help finding suitable places to satisfy their specific tastes. Hence, we designed our project to respond to the following questions: If I was going to choose an Airbnb, where should it be? What places have good amenities nearby? We started by targeting tourists visiting Vancouver and using Vancouver’s public transportation.
 
 # Contribution
+-	Cleaned and organized the data to make the subsequent analysis consistent and accurate
+-	Designed frontend webpage using React JS to get the preferences from users
+-	Applied Pandas Python library for data manipulation to filter collected data
 
 # Intro
 Welcome to Airbnb finder. Find your best Airbnb when you travel to Metro Vancouver.
