@@ -5,6 +5,10 @@ date: 2022-12-09 17:51 -0800
 categories: [Computational Data Science]
 tags: [Computational Data Science, Airbnb]
 ---
+# Motivation
+
+# Contribution
+
 # Intro
 Welcome to Airbnb finder. Find your best Airbnb when you travel to Metro Vancouver.
 ![image](https://user-images.githubusercontent.com/67985232/208594362-64b92dbd-cedb-4b4b-a8f2-a3316b85c32e.png)
