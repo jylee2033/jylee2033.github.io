@@ -11,8 +11,19 @@ tags: [Embedded Systems, Pacman, Beaglebone]
 
 **NOTE:** This is not the most up to date demo video. Project was more completed like having a Game Over screen and less flickering on our demo day.
 
+## Motivation
+We started this project to apply what we learned in Embedded Systems using Pacman, a game that we enjoyed playing when we were young.
+
 ## System Explanation
 We developed a Pacman game on a Beaglebone using an external USB joystick for input, a 16x32 LED matrix panel for display, a headset connected to Zen Cape's audio jack for game music, and a web page to display the game map, guide, and scores.
+
+## Contribution
+I implemented the following features for our Pacman game:
+- play the game music sound through the Zen Cape audio jack, using a headset connected to it
+- display the game map on a 16x32 LED matrix panel, using an external USB joystick for input
+- develop the Pacman game logic, including the movement of the Pacman and the ghosts, the scoring system, and the game over condition
+
+## Code Explanation
 
 ### gameManager.c
 This module initializes the 2D game map array and maintains its state using a static variable. During initialization, GameManager registers necessary callbacks to JoyCon.c, LedDisplay.c, and Ghost.c modules for accessing and manipulating the game map and character locations. It also tracks the current and high scores, and displays "WIN" or "GAME OVER" on the LED panel accordingly.
@@ -50,7 +61,14 @@ This module, running on a separate thread, reads GPIO inputs for the Zen Cape jo
 ### main.c
 Initializes every necessary module and calls shutdown.c module to lock them from cleaning up. Once unlocked, clean up functions are called.
 
-### Web Server
+## Web Server
 Display the game map, a guide showing the mapping of characters to colour, current score, and high score. The server sends out udp datagram every 100ms to udp.c module in order to update the game map and scores.
 
 ![Web Server](/assets/images/web-server.png)
+
+## Extra Hardware Used
+1.	Xbox Controller:
+We installed libusb on the host to compile the driver code for the controller on the target. libusb is a C library that our driver code can use to provide access to USB devices on the target. To cross-compile for the target, we installed the armhf binary of libusb.
+
+2.	LED 16x32 Matrix Panel:
+Referred past student’s guide to connecting the display to the BeagleBone’s pins using jumper wires.
