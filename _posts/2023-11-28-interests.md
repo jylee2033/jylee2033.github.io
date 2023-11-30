@@ -11,7 +11,7 @@ tags: [Suzume OST]
 
   <a href="https://youtu.be/nGdU0ipazQA">Suzume OST</a> <br>
   Left: Jooyoung (Julia) Lee <br>
-  Right: Nagisa Nakamura
+  Right: Nagisa Nakamura <br><br>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/RTRvrRRkUOk?si=ea3zjOC7xKpUTuqO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
