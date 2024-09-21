@@ -23,5 +23,5 @@ tags: [Suzume OST]
 
   <a href="https://youtube.com/shorts/hQoicvqabnY?feature=share">Mikrokosmos 소우주</a> <br>
   Left: Jooyoung (Julia) Lee<br>
-  Right: Sunghyun Kim <br><br><br>
+  Right: Sunghyun Kim<br><br><br>
 </div>
