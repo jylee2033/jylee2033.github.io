@@ -2,7 +2,7 @@
 layout: post
 title: Interests
 date: 2023-11-28 22:13 -0800
-categories: [Piano, Photography]
+categories: [Piano]
 tags: [Suzume OST]
 ---
 # Piano
