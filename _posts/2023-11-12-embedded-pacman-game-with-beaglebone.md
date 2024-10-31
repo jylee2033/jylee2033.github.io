@@ -68,3 +68,10 @@ We installed libusb on the host to compile the driver code for the controller on
 
 2.	LED 16x32 Matrix Panel:
 Referred past student’s guide to connecting the display to the BeagleBone’s pins using jumper wires.
+
+## Alternative BeagleBone Demo
+The demo video for this project has expired, so I brought in a video from another project using a BeagleBone.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_qAAcO7V7kE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <br>
+
+  <a href="https://youtu.be/_qAAcO7V7kE?si=XmP1mfD3G42QtVKw">Demo Video</a>
