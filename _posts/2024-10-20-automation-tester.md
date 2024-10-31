@@ -11,9 +11,9 @@ tags: [Co-op, Automation Tester, Embedded Firmware, Hybrid, Manual Tester]
 
 # January
 - Jan 8 : First day! 😆
-- Went through the Confluence documents to understand devices
+- Went through the Confluence documents to understand devices  
 ![Introduction to Focus Ecosystem](/assets/images/Introduction_to_Focus_Ecosystem.png)
-- Explored BWC’s config parameters
+- Explored BWC’s config parameters  
 ![BWC’s Config Parameters](/assets/images/BWC’s_Config_Parameters.png)
 - Jan 17 : First sprint meeting
 - Listed test cases and wrote test execution steps for 6 parameters : DoubleClick, EnableCAT, TagEvent, OSDPDName, DefaultEvent, PreEventLength\
