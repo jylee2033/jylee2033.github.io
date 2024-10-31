@@ -5,15 +5,7 @@ date: 2023-04-12 05:10 -0800
 categories: [Embedded Systems]
 tags: [Embedded Systems, Pacman, Beaglebone]
 ---
-<div style="position:relative;width:fit-content;height:fit-content;">
-            <a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/kbTIQFkowRK?utm_source=embed&utm_medium=embed&utm_campaign=watch">
-                <img loading="lazy" style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
-            </a>
-            <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/kbTIQFkowRK/embed" width="640" height="360"></iframe>
-          </div>
-<a href="https://clipchamp.com/watch/kbTIQFkowRK?utm_source=share&utm_medium=social&utm_campaign=watch">Demo Video</a>
-
-**NOTE:** This is not the most up to date demo video. Project was more completed like having a Game Over screen and less flickering on our demo day.
+![image](/assets/images/demo.png)
 
 ## Motivation
 We started this project to apply what we learned in Embedded Systems using Pacman, a game that we enjoyed playing when we were young.
