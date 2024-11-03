@@ -15,7 +15,7 @@ In this project, we focused on providing Airbnb lists to people who are looking 
 
 # Intro
 Welcome to Airbnb finder. Find your best Airbnb when you travel to Metro Vancouver.
-![image](https://user-images.githubusercontent.com/67985232/208594362-64b92dbd-cedb-4b4b-a8f2-a3316b85c32e.png)
+![Demo](https://user-images.githubusercontent.com/67985232/208594362-64b92dbd-cedb-4b4b-a8f2-a3316b85c32e.png)
 
 # To run Locally
 ## Backend
@@ -79,7 +79,7 @@ https://www.translink.ca/schedules-and-maps/interactive-system-map
 3. OSM(OpenStreetMap) - osm/
 Multiple steps were required to collect the osm data we wanted.
   * Extract osm data with the boundary below from https://extract.bbbike.org/ and save it at raw-data/.
-  ![Alt text](/assets/images/osm.png)
+  ![OSM](/assets/images/airbnb/osm.png)
 
     coordinates:(-123.28,49.18_-122.99,49.32)
 

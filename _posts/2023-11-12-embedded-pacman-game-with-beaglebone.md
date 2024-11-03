@@ -5,7 +5,7 @@ date: 2023-04-12 05:10 -0800
 categories: [Embedded Systems]
 tags: [Embedded Systems, Pacman, Beaglebone]
 ---
-![image](/assets/images/demo.png)
+![Demo](/assets/images/embedded/demo.png)
 
 ## Motivation
 We started this project to apply what we learned in Embedded Systems using Pacman, a game that we enjoyed playing when we were young.
@@ -60,7 +60,7 @@ Initializes every necessary module and calls shutdown.c module to lock them from
 ## Web Server
 Display the game map, a guide showing the mapping of characters to colour, current score, and high score. The server sends out udp datagram every 100ms to udp.c module in order to update the game map and scores.
 
-![Web Server](/assets/images/web-server.png)
+![Web Server](/assets/images/embedded/web-server.png)
 
 ## Extra Hardware Used
 1.	Xbox Controller:
