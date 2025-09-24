@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Software Test Engineer
-date: 2025-9-24 12:18 -0800
+date: 2025-9-23 12:18 -0800
 categories: [Co-op]
 tags: [Co-op, Software Test Engineer, Embedded Firmware, Hybrid, Manual Tester]
 ---
