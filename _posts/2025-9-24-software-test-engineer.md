@@ -10,4 +10,4 @@ tags: [Co-op, Software Test Engineer, Embedded Firmware, Hybrid, Manual Tester]
 - Co-op Experience Summary
 
 # January
-- Work In Progress - content will be updated soon...:)
+- Work In Progress - content will be updated soon... :)
