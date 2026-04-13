@@ -20,3 +20,8 @@ package-lock.json
 
 # Misc
 assets/js/dist
+
+# Astro
+node_modules/
+dist/
+.astro/
