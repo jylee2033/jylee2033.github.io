@@ -26,3 +26,6 @@ dist/
 .astro/
 .superpowers/
 docs/
+
+# Worktrees
+.worktrees/
