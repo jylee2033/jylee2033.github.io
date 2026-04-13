@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import YouTubeGrid from '../components/YouTubeGrid.astro';
+import PhotoGrid from '../components/PhotoGrid.astro';
+import { pianoVideos, bakingPhotos, photographyPhotos } from '../data/life';
+---
+
+<BaseLayout title="Life" description="Piano, baking, and photography — Julia Lee's life outside of work.">
+  <section class="section">
+    <div class="container">
+      <h1 style="margin-bottom: 0.5rem;">Life</h1>
+      <p class="page-sub">Piano, baking, and photography — things I love outside of work.</p>
+
+      <div class="life-section fade-in">
+        <h2 style="margin-bottom: 1.5rem;">🎹 Piano</h2>
+        <YouTubeGrid videos={pianoVideos} />
+      </div>
+
+      <hr class="life-divider" />
+
+      <div class="life-section fade-in">
+        <h2 style="margin-bottom: 1.5rem;">🍰 Baking</h2>
+        <PhotoGrid photos={bakingPhotos} />
+      </div>
+
+      <hr class="life-divider" />
+
+      <div class="life-section fade-in">
+        <h2 style="margin-bottom: 1.5rem;">📷 Photography</h2>
+        <PhotoGrid photos={photographyPhotos} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .life-section { margin-bottom: 3rem; }
+  .life-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 3rem 0;
+  }
+</style>
