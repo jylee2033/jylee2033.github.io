@@ -5,130 +5,62 @@ description: "Co-op internship implementing Pytest frameworks and designing stan
 tags: ["Co-op", "Pytest", "Test Automation", "Python"]
 featured: false
 ---
-# Outline / Agenda
-- Key Accomplishments (January - August)
-- Co-op Experience Summary
+*Jan 2024 – Aug 2024*
 
-# January
-- Jan 8 : First day! 😆
-- Went through the Confluence documents to understand devices
-- Explored BWC's config parameters
-- Jan 17 : First sprint meeting
-- Listed test cases and wrote test execution steps for 6 parameters :
-<a href="https://real-thyme-6b7.notion.site/12f8e490fe854ae189f6cefe58c07157?v=cdfb0843c41b443bb18087fccdc6a1aa">X2 Test Executions</a>
-    - DoubleClick
-    - EnableCAT
-    - TagEvent
-    - OSDPDName
-    - DefaultEvent
-    - PreEventLength
+During my co-op at **Safe Fleet**, I built and maintained a **Pytest-based test automation framework** for Body Worn Camera (BWC) devices. My work evolved from writing individual test scripts to designing a reusable framework template used across the full test suite.
 
-    → enhanced my understanding of the parameters needed when writing test code
+## Key Accomplishments
 
-# February
-- Reviewed all the functions in the libraries
-- Updated outdated code
-- Fixed any errors that occurred
-- Removed redundant functions
-- Added new necessary functions
-    - lib_bwc.py
-    - lib_bwc_user.py
-    - lib_bwc_rootdir.py
-    - lib_gen.py
+By the end of the term, the BWC test suite had a consistent, maintainable structure it did not have before. I designed the framework template that gave it that structure, centralized all verification logic into a single reusable module, and migrated every existing test file to align with it — while also refactoring the shared libraries the tests depended on.
 
-- Feb 21 : Got access to Github
-→ Merged them into the develop branch
+## Framework Design
 
-# March
-- Developed new functions in the library
-    - log_metadata_parser
-    - get_inf_from_metadata : A function that extracts specific information from all metadata files in all subfolders within DCIM
+The most significant contribution was designing a **uniform test structure** that made writing new tests faster and more consistent.
 
-# April
-- Added consistent docstrings for all the library and test functions
-- Added Python parameter hints
-- Wrote Unit Test code
-    - test_BWC_fw_flash.py
-    - test_BWC_EnableCAT.py
+Each test file consists of two components:
 
-- Converted Unit Test → Pytest
-    - test_BWC_fw_flash.py
-    - test_BWC_EnableCAT.py
-    - test_BWC_tag.py
+- `test_***` — executes the test using **8 fixed steps**: dock/mount, initialize with parameters, build expected state, undock, trigger, redock, verify, undock
+- `get_expected_dict` — builds the expected state dictionary; verification logic dispatches based on its keys
 
-# May
-- Wrote More Pytests
-    - test_BWC_tag.py
-    - test_BWC_bookmark.py
-    - test_BWC_multi_rec.py
+This pattern meant that adding a new test required only defining the expected state — the scaffolding was already in place.
 
-- lib_gen.py : init_camera
-    - Automatically place the necessary files (config.ini / config.json + related files) in the root folder to set up the test environment before starting the test
+> Standardizing the test lifecycle eliminated repeated boilerplate and made each new test file easy to review and understand at a glance.
 
-        → Enabled more flexible use of the pytest framework
+## Library Development
 
-# June
-- Wrote More Pytests
-    - test_BWC_multi_rec.py
-    - test_BWC_hash.py
-    - test_BWC_snapshot.py
-    - test_BWC_encryption.py
-    - test_BWC_video.py
+I spent the first months reviewing, cleaning up, and extending the shared libraries before writing tests against them.
 
-- Used parametrize
+- Fixed outdated code and removed redundant functions across `lib_bwc.py`, `lib_bwc_user.py`, `lib_bwc_rootdir.py`, and `lib_gen.py`
+- Added `log_metadata_parser` and `get_inf_from_metadata` for extracting data from DCIM metadata files
+- Added `init_camera` to `lib_gen.py` — automatically places required config files before test execution, removing manual setup steps
+- Added consistent **docstrings and type hints** across all library and test functions
 
-# July
-- Created a test file template
-    - Test file contains 2 types of functions
-    → To reuse the repetitive verifications for each new test
-    → To create new tests more efficiently with a framework
+> Cleaning up the library first meant the test code built on top of it was cleaner from the start.
 
-        1. test_*** : function used to execute the actual tests
-            - 8 predefined steps
-                1. BWC dock and mount
-                2. Initialize BWC with given parameters
-                3. Generate an expected_dict (#2)
-                4. Undock BWC
-                5. Trigger the test
-                6. BWC dock and mount
-                7. Verifications
-                8. Undock BWC
+## Test Coverage
 
-                → These 8 steps are applied uniformly to all tests and do not require any special modifications
+I wrote and migrated Pytest files covering:
 
-        2. get_expected_dict : a helper function to create expected_dict
-            - By changing the elements of the `expected_dict` for each test, the corresponding verification is executed
-            - As verification progresses, elements used for future verifications are added to the dictionary
+**BWC features tested:** firmware flash, EnableCAT, tag events, bookmarks, multi-recording, hash verification, snapshots, encryption, and video recording.
 
-- Created a new file : lib_bwc_verifications.py
-    - Contains all the verification functions
-    - Main function : verification_test(expected_dict: dict) → bool
-        - Checks the elements of the expected_dict and executes the corresponding functions
+All tests were aligned to the standardized template by the end of the term and merged into the `develop` branch.
 
-- Finished modifying test files to align with the new template
-    - test_BWC_multi_rec.py
-    - test_BWC_snapshot.py
-    - test_BWC_hash.py
-    - test_BWC_tag.py
-    - test_BWC_bookmark.py
+> Using `parametrize` for multi-input scenarios and `xfail` markers for known limitations helped keep the test suite stable and honest about coverage gaps.
 
-# August
-- Modified the remaining test functions that have not yet been aligned with the new template
-    - test_BWC_fw_flash.py
-    - test_BWC_EnableCAT.py
-    - test_BWC_encryption.py
+## Timeline
 
-- Merged all the created pull requests into the develop branch
-- Ensured that all the written tests are working correctly without any errors
+| Period | Focus |
+|--------|-------|
+| Jan | Onboarding; documented BWC config parameters and manual execution steps |
+| Feb | Library cleanup and refactoring; merged updates into `develop` |
+| Mar | New library functions for metadata parsing |
+| Apr | Docstrings, type hints, converted first Unit Tests to Pytest |
+| May–Jun | Expanded Pytest coverage across 6+ feature areas |
+| Jul | Designed the standardized test template and `lib_bwc_verifications.py` |
+| Aug | Migrated all remaining tests to the new template; final PR merges |
 
-# Co-op Experience Summary
-- Learning to write unit tests and use pytest within a framework
+## Reflection
 
-    → a valuable opportunity to enhance my Python skills and deepen my understanding of Git
-- Reflecting on my journey
+This co-op gave me hands-on experience building a test framework rather than just using one.
 
-    → proud to see how BWC has gradually become more integrated into the test framework
-- Starting new tasks before merging previous PRs presented challenges, leading to conflicts
-
-    → studying Git flow made it easier to resolve these issues
-- Truly grateful and lucky for having this opportunity to gain valuable work experience and for the support provided to successfully complete my tasks 😊
+> Designing for reuse — so the next test is easier to write than the last — turned out to be the most valuable skill I practiced here.

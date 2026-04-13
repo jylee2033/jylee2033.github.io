@@ -7,13 +7,11 @@ featured: true
 ---
 *Jan 2025 – Aug 2025*
 
-During my internship at Semtech, I worked as a Software Test Engineer Intern supporting the validation of cellular modem products such as **EM92** and **EM86**. My work focused on preparing and maintaining test environments, executing driver and firmware tests, and investigating issues when devices did not behave as expected.
-
-A significant part of my role involved ensuring that test environments were stable and ready before testing could begin. Rather than only running test cases, I spent much of my time identifying and resolving environment-related issues that could block or invalidate testing.
+During my internship at **Semtech**, I worked as a **Software Test Engineer Intern** on the validation of cellular modem products (**EM92**, **EM86**). My work covered test environment setup, driver and firmware testing, issue investigation, and test automation — with a strong focus on keeping environments stable and reliable before any test execution.
 
 ## Test Environment Setup
 
-Much of my daily work started with preparing test laptops. I worked extensively in both **Windows** and **Linux** environments, handling setup tasks directly.
+Much of my daily work started with preparing test laptops. I worked extensively in both **Windows** and **Linux** environments, handling setup tasks in both.
 
 ### Windows
 - Performed **OS imaging (ghosting)** using Macrium Reflect
@@ -27,18 +25,18 @@ Much of my daily work started with preparing test laptops. I worked extensively 
 - Verified device detection using system commands
 - Resolved permission issues by adjusting user groups and access rights
 
-Because many test failures originated from environment issues, it was important to first determine whether a system was in a valid and testable state.
+> Environment stability is a prerequisite for trustworthy test results — most blocking issues came from setup, not the tests themselves.
 
 ## Driver and Firmware Work
 
-Driver and firmware combinations often affected device behavior, so I repeatedly tested different configurations.
+Driver and firmware pairings directly affected device behavior, so I tested across multiple combinations to isolate their effects.
 
 - Verified port exposure such as **NMEA, QMI, and MBIM** after driver installation
 - Performed **firmware upgrades and image switches** on both Windows and Linux
 - Compared behavior across different firmware versions
 - Adjusted configurations and validated changes through reboot cycles
 
-When issues appeared, I focused on determining whether the root cause was related to the **driver**, **firmware**, or **environment setup**.
+> Isolating whether a failure was caused by the driver, firmware, or environment was the first step before any escalation.
 
 ## Troubleshooting and Issue Investigation
 
@@ -55,6 +53,8 @@ On Linux systems, I frequently diagnosed **connectivity-related issues**:
 - Verified DNS configuration and restored connectivity step by step
 - Confirmed device status before escalating issues
 
+> Chasing a bug that turns out to be a known issue or an environment problem wastes everyone's time. Verifying scope and history first kept escalations meaningful.
+
 ## Test Execution and Tracking
 
 Test requests and results were managed through **Jira** and **qTest**.
@@ -64,35 +64,31 @@ Test requests and results were managed through **Jira** and **qTest**.
 - Attached logs and clear reproduction steps for failed cases
 - Reviewed and closed related tickets before sprint deadlines
 
-Clear documentation was essential so that others could quickly understand test outcomes and continue investigations if needed.
+> Clear documentation of failures — with logs and reproduction steps — reduced repeated work across the team.
 
 ## Automation and Test Framework Work
 
-Some of my work involved converting existing manual test cases into automated tests.
+I converted existing manual test cases into automated **Pytest** tests, extending the framework to support multiple products.
 
 - Modified and extended **Pytest-based test scripts**
 - Refactored tests to support multiple products
 - Extracted repeated verification logic to improve maintainability
 - Added expected failures (**xfail**) to stabilize test results
 
-Through this work, I learned the importance of writing test code that is **readable and maintainable**, not just functional.
+> Converting manual tests to Pytest taught me that test code needs to be as maintainable as production code.
 
 ## Collaboration and Communication
 
-When I encountered blockers, I made an effort to ask **well-prepared questions**.
+When I encountered blockers, I asked **well-prepared questions**.
 
 - Summarized what I had already tried
 - Shared logs and configuration details
 - Discussed issues in meetings to gain different perspectives
 
-This experience taught me that clearly communicating technical problems is as important as solving them.
+> A well-prepared question gets a useful answer. Engineers respond better when you show your work — what you tried, what you observed, what you ruled out.
 
 ## Reflection
 
-My time at Semtech helped me understand that testing is not only about producing results, but about building and maintaining a reliable foundation.
+Working at Semtech showed me that testing is about more than producing results — it's about building a **reliable foundation**.
 
-- An unstable environment leads to unreliable tests
-- Poor documentation causes repeated issues
-- Small configuration changes can have system-wide impact
-
-Working behind the scenes on these foundational tasks gave me a deeper appreciation for the role of careful setup, troubleshooting, and documentation in engineering workflows.
+> An unstable environment, poor documentation, or a missed configuration change can undermine an entire test cycle. Getting these right is the real work.
