@@ -1,0 +1,42 @@
+---
+interface SkillGroup {
+  label: string;
+  color: 'purple' | 'pink' | 'steel';
+  skills: string[];
+}
+interface Props { groups: SkillGroup[] }
+const { groups } = Astro.props;
+
+const colorMap = {
+  purple: { bg: 'var(--color-lavender-mist)', text: 'var(--color-primary)' },
+  pink:   { bg: '#fff0f1', text: 'var(--color-accent)' },
+  steel:  { bg: '#eef1f8', text: '#6a7a9a' },
+};
+---
+
+<div class="skill-groups">
+  {groups.map(group => {
+    const c = colorMap[group.color];
+    return (
+      <div class="skill-group">
+        <p class="label" style="margin-bottom: 0.5rem;">{group.label}</p>
+        <div class="chips">
+          {group.skills.map(skill => (
+            <span class="chip" style={`background:${c.bg}; color:${c.text};`}>{skill}</span>
+          ))}
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .skill-groups { display: flex; flex-direction: column; gap: 1.25rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    border-radius: var(--radius-full);
+    padding: 0.3rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="footer__copy">© {year} Julia Lee</span>
+    <div class="footer__links">
+      <a href="mailto:jylee2033@gmail.com" aria-label="Email">jylee2033@gmail.com</a>
+      <a href="https://github.com/jylee2033" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding: 2rem 0;
+    margin-top: 4rem;
+  }
+  .footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer__copy { font-size: 0.85rem; color: var(--color-text-muted); }
+  .footer__links {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+  .footer__links a:hover { color: var(--color-primary); }
+</style>
