@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SkillChips from '../components/SkillChips.astro';
+import Timeline from '../components/Timeline.astro';
+
+const skillGroups = [
+  {
+    label: 'Languages',
+    color: 'purple' as const,
+    skills: ['Python', 'JavaScript', 'C / C++', 'SQL', 'Java'],
+  },
+  {
+    label: 'Testing & QA',
+    color: 'pink' as const,
+    skills: ['Pytest', 'Selenium', 'CI/CD', 'Test Automation'],
+  },
+  {
+    label: 'Tools & Frameworks',
+    color: 'steel' as const,
+    skills: ['React', 'Git', 'Linux', 'BeagleBone'],
+  },
+];
+
+const timelineItems = [
+  {
+    period: 'Jan 2025 – Aug 2025',
+    title: 'Software Test Engineer Intern',
+    org: 'Semtech',
+    description: 'Validated cellular modem products (EM92, EM86). Managed test environments on Windows and Linux, executed driver and firmware tests.',
+    type: 'internship' as const,
+  },
+  {
+    period: 'Jan 2024 – Aug 2024',
+    title: 'Automation Tester Intern',
+    org: 'Safe Fleet (Clarience Technologies)',
+    description: 'Implemented Pytest frameworks and designed standardized test templates to streamline QA processes.',
+    type: 'internship' as const,
+  },
+];
+---
+
+<BaseLayout title="About" description="About Julia Lee — Computing Science student at SFU, QA Engineer, based in Vancouver.">
+  <section class="section">
+    <div class="container about">
+
+      <div class="about__intro">
+        <div class="about__photo-wrap">
+          <img src="/images/avatar.png" alt="Julia Lee" class="about__photo" />
+        </div>
+        <div>
+          <h2>About Me</h2>
+          <p>
+            Hello! I'm <strong>Jooyoung (Julia) Lee</strong>, a Computing Science student at
+            Simon Fraser University, graduating December 2025. Originally from Korea, I moved
+            to Vancouver to pursue my passion for Computer Science.
+          </p>
+          <p style="margin-top: 0.75rem;">
+            I thrive in new environments and love challenging myself to adapt, learn, and grow.
+            Outside of work, I enjoy playing piano 🎹, baking 🍰, and photography 📷.
+          </p>
+        </div>
+      </div>
+
+      <div class="about__section fade-in">
+        <h2 style="margin-bottom: 1.5rem;">Skills</h2>
+        <SkillChips groups={skillGroups} />
+      </div>
+
+      <div class="about__section fade-in">
+        <h2 style="margin-bottom: 1.5rem;">Experience</h2>
+        <Timeline
+          items={timelineItems}
+          eduName="SFU — Computing Science (B.Sc.)"
+          eduStart="Sep 2020"
+          eduEnd="Dec 2025"
+        />
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about__intro {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 3.5rem;
+  }
+  .about__photo-wrap {
+    width: 140px;
+    height: 170px;
+    flex-shrink: 0;
+  }
+  .about__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    mask-image:
+      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: destination-in;
+  }
+  .about__section { margin-bottom: 3.5rem; }
+
+  @media (max-width: 600px) {
+    .about__intro { grid-template-columns: 1fr; }
+    .about__photo-wrap { width: 100px; height: 120px; margin: 0 auto; }
+  }
+</style>

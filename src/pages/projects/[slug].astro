@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(p => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const projects = await getCollection('projects');
+const entry = projects.find(p => p.id === slug);
+if (!entry) return Astro.redirect('/projects');
+
+const { Content } = await render(entry);
+const { title, date, description, tags } = entry.data;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="section">
+    <div class="container detail">
+      <a href="/projects" class="back-link">← Back to Projects</a>
+      <h1>{title}</h1>
+      <div class="detail__meta">
+        <time>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</time>
+        <div class="detail__tags">
+          {tags.map(tag => (
+            <span class="detail__tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+      <div class="detail__content">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--color-primary); }
+  .detail h1 { margin-bottom: 1rem; }
+  .detail__meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .detail__meta time { font-size: 0.875rem; color: var(--color-text-muted); }
+  .detail__tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .detail__tag {
+    background: var(--color-lavender-mist);
+    color: var(--color-primary);
+    border-radius: var(--radius-full);
+    padding: 0.2rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .detail__content {
+    max-width: 720px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #4a4060;
+  }
+  .detail__content h2, .detail__content h3 { margin: 2rem 0 0.75rem; }
+  .detail__content p { margin-bottom: 1rem; }
+  .detail__content img {
+    border-radius: var(--radius-md);
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .detail__content ul, .detail__content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .detail__content li { margin-bottom: 0.4rem; }
+</style>
