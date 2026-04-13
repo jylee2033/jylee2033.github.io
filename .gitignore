@@ -24,3 +24,5 @@ assets/js/dist
 node_modules/
 dist/
 .astro/
+.superpowers/
+docs/
