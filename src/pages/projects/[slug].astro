@@ -66,21 +66,46 @@ const { title, date, description, tags } = entry.data;
     font-weight: 600;
   }
   .detail__content {
-    max-width: 720px;
+    max-width: 900px;
     font-size: 0.95rem;
     line-height: 1.8;
     color: #4a4060;
   }
-  .detail__content h2, .detail__content h3 { margin: 2rem 0 0.75rem; }
-  .detail__content p { margin-bottom: 1rem; }
-  .detail__content img {
+  .detail__content :global(h2) { margin: 2.5rem 0 0.75rem; }
+  .detail__content :global(h3) { margin: 1.75rem 0 0.5rem; }
+  .detail__content :global(p) { margin-bottom: 1.5rem; }
+  .detail__content :global(blockquote) {
+    margin: 1.25rem 0 1.75rem;
+    padding: 0.75rem 1.25rem;
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-lavender-mist);
+    border-radius: 0 var(--radius-sm, 4px) var(--radius-sm, 4px) 0;
+    color: var(--color-primary);
+  }
+  .detail__content :global(img) {
     border-radius: var(--radius-md);
     margin: 1.5rem 0;
     box-shadow: var(--shadow-sm);
   }
-  .detail__content ul, .detail__content ol {
+  .detail__content :global(ul), .detail__content :global(ol) {
     padding-left: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
-  .detail__content li { margin-bottom: 0.4rem; }
+  .detail__content :global(li) { margin-bottom: 0.5rem; }
+  .detail__content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 1.5rem;
+    font-size: 0.9rem;
+  }
+  .detail__content :global(th), .detail__content :global(td) {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+  }
+  .detail__content :global(th) {
+    background: var(--color-lavender-mist);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
 </style>
