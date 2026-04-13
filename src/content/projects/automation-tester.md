@@ -1,5 +1,5 @@
 ---
-title: "Automation Tester — Clarience Technologies"
+title: "Automation Tester — Safe Fleet"
 date: "2024-10-20"
 description: "Co-op internship implementing Pytest frameworks and designing standardized test templates to streamline QA processes."
 tags: ["Co-op", "Pytest", "Test Automation", "Python"]
