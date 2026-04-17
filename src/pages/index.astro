@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSplit from '../components/HeroSplit.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
 import { getCollection } from 'astro:content';
-import { bakingPhotos, photographyPhotos } from '../data/life';
+import { pianoVideos, bakingPhotos, photographyPhotos } from '../data/life';
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
@@ -14,6 +14,7 @@ const lifePreviewPhotos = [
   ...bakingPhotos.slice(-2),
   ...photographyPhotos.slice(-2),
 ];
+const lifePreviewVideos = pianoVideos.slice(0, 2);
 ---
 
 <BaseLayout title="Home" description="Julia Lee — Computing Science student at SFU, QA Engineer, based in Vancouver.">
@@ -35,8 +36,17 @@ const lifePreviewPhotos = [
   <section class="section fade-in">
     <div class="container">
       <p class="label" style="margin-bottom: 1rem;">Life — Outside of Work</p>
-      {lifePreviewPhotos.length > 0 && (
+      {(lifePreviewPhotos.length > 0 || lifePreviewVideos.length > 0) && (
         <div class="life-preview-grid">
+          {lifePreviewVideos.map(v => (
+            <a href="/life" class="life-preview-thumb">
+              <img
+                src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
+                alt={v.title}
+                class="life-preview-img"
+              />
+            </a>
+          ))}
           {lifePreviewPhotos.map(photo => (
             <img src={photo.src} alt={photo.alt} class="life-preview-img" />
           ))}
@@ -53,6 +63,9 @@ const lifePreviewPhotos = [
     grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
     margin-bottom: 1rem;
+  }
+  .life-preview-thumb {
+    display: block;
   }
   .life-preview-img {
     width: 100%;
