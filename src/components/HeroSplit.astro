@@ -3,17 +3,19 @@ interface Props {
   name: string;
   tagline: string;
   subline: string;
-  photoSrc: string;
-  photoAlt: string;
+  photoSrc?: string;
+  photoAlt?: string;
 }
 const { name, tagline, subline, photoSrc, photoAlt } = Astro.props;
 ---
 
 <section class="hero">
-  <div class="container hero__inner">
-    <div class="hero__photo-wrap">
-      <img src={photoSrc} alt={photoAlt} class="hero__photo" />
-    </div>
+  <div class={`container hero__inner${photoSrc ? '' : ' hero__inner--no-photo'}`}>
+    {photoSrc && (
+      <div class="hero__photo-wrap">
+        <img src={photoSrc} alt={photoAlt} class="hero__photo" />
+      </div>
+    )}
     <div class="hero__text">
       <p class="label">Hi there 👋</p>
       <h1>{name}</h1>

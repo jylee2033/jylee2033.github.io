@@ -23,18 +23,22 @@ const skillGroups = [
 
 const timelineItems = [
   {
-    period: 'Jan 2025 – Aug 2025',
-    title: 'Software Test Engineer Intern',
-    org: 'Semtech',
-    description: 'Validated cellular modem products (EM92, EM86). Managed test environments on Windows and Linux, executed driver and firmware tests.',
-    type: 'internship' as const,
-  },
-  {
     period: 'Jan 2024 – Aug 2024',
     title: 'Automation Tester Intern',
     org: 'Safe Fleet',
     description: 'Implemented Pytest frameworks and designed standardized test templates to streamline QA processes.',
     type: 'internship' as const,
+    href: '/projects/automation-tester',
+    year: '2024',
+  },
+  {
+    period: 'Jan 2025 – Aug 2025',
+    title: 'Software Test Engineer Intern',
+    org: 'Semtech',
+    description: 'Validated cellular modem products (EM92, EM86). Managed test environments on Windows and Linux, executed driver and firmware tests.',
+    type: 'internship' as const,
+    href: '/projects/software-test-engineer',
+    year: '2025',
   },
 ];
 ---
@@ -73,6 +77,7 @@ const timelineItems = [
           eduName="SFU — Computing Science (B.Sc.)"
           eduStart="Sep 2020"
           eduEnd="Dec 2025"
+          seeking={{ year: '2026', text: 'Open to opportunities' }}
         />
       </div>
 
@@ -92,20 +97,24 @@ const timelineItems = [
     width: 140px;
     height: 170px;
     flex-shrink: 0;
+    -webkit-mask-image: linear-gradient(
+      to right, transparent 0%, black 20%, black 80%, transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right, transparent 0%, black 20%, black 80%, transparent 100%
+    );
   }
   .about__photo {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center bottom;
-    mask-image:
-      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
-    -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-composite: destination-in;
+    -webkit-mask-image: linear-gradient(
+      to bottom, transparent 0%, black 8%, black 92%, transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom, transparent 0%, black 8%, black 92%, transparent 100%
+    );
   }
   .about__section { margin-bottom: 3.5rem; }
 

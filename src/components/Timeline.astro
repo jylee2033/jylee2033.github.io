@@ -5,91 +5,210 @@ interface TimelineItem {
   org: string;
   description: string;
   type: 'internship' | 'work';
+  href?: string;
+  year: string;
 }
 interface Props {
   items: TimelineItem[];
   eduStart: string;
   eduEnd: string;
   eduName: string;
+  seeking?: { year: string; text: string };
 }
-const { items, eduStart, eduEnd, eduName } = Astro.props;
+const { items, eduStart, eduEnd, eduName, seeking } = Astro.props;
+const eduStartYear = eduStart.split(' ')[1];
+const totalRows = 1 + items.length + (seeking ? 1 : 0);
 ---
 
-<div class="timeline">
-  <div class="timeline__edu-band">
-    <span class="label timeline__edu-label">{eduName}</span>
-    <span class="timeline__edu-period">{eduStart} – {eduEnd}</span>
+<div class="timeline" style={`--total-rows: ${totalRows}`}>
+
+  <!-- Left: edu spans all rows -->
+  <div class="tl-edu" style={`grid-row: 1 / span ${totalRows}`}>
+    <p class="tl-edu__name">{eduName}</p>
+    <p class="tl-edu__period">{eduStart} – {eduEnd}</p>
   </div>
-  <div class="timeline__items">
-    {items.map(item => (
-      <div class="timeline__item">
-        <div class="timeline__dot" />
-        <div class="timeline__card">
-          <p class="label timeline__period">{item.period}</p>
-          <h3>{item.title}</h3>
-          <p class="timeline__org">{item.org}</p>
-          <p class="timeline__desc">{item.description}</p>
-        </div>
+
+  <!-- Row 1: edu start year, no right card -->
+  <div class="tl-axis tl-axis--first">
+    <div class="tl-dot"></div>
+    <div class="tl-badge">{eduStartYear}</div>
+  </div>
+  <div class="tl-spacer"></div>
+
+  <!-- Item rows -->
+  {items.map(item => (
+    <>
+      <div class="tl-axis tl-axis--item">
+        <div class="tl-dot tl-dot--active"></div>
+        <div class="tl-badge tl-badge--active">{item.year}</div>
       </div>
-    ))}
-  </div>
+      <div class="tl-card">
+        <p class="label tl-card__period">{item.period}</p>
+        <h3>{item.title}</h3>
+        <p class="tl-card__org">{item.org}</p>
+        <p class="tl-card__desc">{item.description}</p>
+        {item.href && <a href={item.href} class="tl-card__link">View project →</a>}
+      </div>
+    </>
+  ))}
+
+  <!-- Seeking row -->
+  {seeking && (
+    <>
+      <div class="tl-axis tl-axis--seeking">
+        <div class="tl-dot tl-dot--seeking"></div>
+        <div class="tl-badge tl-badge--seeking">{seeking.year}</div>
+      </div>
+      <div class="tl-card tl-card--seeking">
+        <p class="tl-card__seeking">{seeking.text}</p>
+      </div>
+    </>
+  )}
+
 </div>
 
 <style>
-  .timeline { position: relative; }
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+  }
 
-  .timeline__edu-band {
+  /* ── Left: Education ── */
+  .tl-edu {
+    grid-column: 1;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(90deg, var(--color-lavender-mist), #f0f4ff);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1.75rem 1.5rem 1.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--color-lavender-mist), #f0f4ff);
     border-radius: var(--radius-md);
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--color-primary);
+    border: 1px solid var(--color-border);
     border-left: 4px solid var(--color-primary);
   }
-  .timeline__edu-label { color: var(--color-primary); }
-  .timeline__edu-period { font-size: 0.82rem; color: var(--color-text-muted); }
-
-  .timeline__items {
-    position: relative;
-    padding-left: 1.75rem;
+  .tl-edu__name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
   }
-  .timeline__items::before {
+  .tl-edu__period {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Center: Axis ── */
+  .tl-axis {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1.25rem 0;
+    position: relative;
+  }
+  /* continuous vertical line through all axis cells */
+  .tl-axis::before {
     content: '';
     position: absolute;
-    left: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--color-accent), var(--color-steel));
-    border-radius: 2px;
+    background: var(--color-border);
   }
+  .tl-axis--first { padding-top: 1.75rem; }
+  .tl-axis--seeking { padding-bottom: 1.75rem; }
 
-  .timeline__item {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  .timeline__dot {
-    position: absolute;
-    left: -1.75rem;
-    top: 0.4rem;
+  .tl-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--color-accent);
+    background: var(--color-steel);
     border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--color-steel);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .tl-dot--active {
+    width: 14px;
+    height: 14px;
+    background: var(--color-accent);
     box-shadow: 0 0 0 2px var(--color-accent);
   }
-  .timeline__card {
+  .tl-dot--seeking {
+    width: 14px;
+    height: 14px;
+    background: #22c55e;
+    box-shadow: 0 0 0 2px #22c55e;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 2px #22c55e; }
+    50%       { box-shadow: 0 0 0 5px rgba(34,197,94,0.3); }
+  }
+
+  .tl-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 0.15rem 0.5rem;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .tl-badge--active  { color: var(--color-accent); border-color: var(--color-accent); background: #fdf4ff; }
+  .tl-badge--seeking { color: #16a34a; border-color: #22c55e; background: #f0fdf4; }
+
+  /* ── Right: Cards ── */
+  .tl-spacer {
+    grid-column: 3;
+    /* same padding-top as tl-axis--first so the row height matches */
+    padding-top: 1.75rem;
+  }
+
+  .tl-card {
+    grid-column: 3;
+    align-self: start;
+    margin: 1.25rem 0 1.25rem 1.25rem;
     background: var(--color-surface);
     border-radius: var(--radius-md);
     padding: 1rem 1.25rem;
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
   }
-  .timeline__period { color: var(--color-steel); margin-bottom: 0.25rem; }
-  .timeline__card h3 { margin-bottom: 0.2rem; }
-  .timeline__org { font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem; }
-  .timeline__desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; }
+  .tl-card--seeking {
+    border: 1.5px dashed #22c55e;
+    background: #f0fdf4;
+    display: flex;
+    align-items: center;
+  }
+  .tl-card__period { color: var(--color-steel); margin-bottom: 0.25rem; }
+  .tl-card h3      { margin-bottom: 0.2rem; }
+  .tl-card__org    { font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem; }
+  .tl-card__desc   { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; }
+  .tl-card__link   { display: inline-block; margin-top: 0.6rem; font-size: 0.85rem; font-weight: 600; color: var(--color-primary); }
+  .tl-card__link:hover { color: var(--color-primary-dark); }
+  .tl-card__seeking { font-size: 0.9rem; font-weight: 600; color: #16a34a; }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px) {
+    .timeline { grid-template-columns: 1fr; }
+    .tl-edu {
+      grid-row: auto !important;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-primary);
+      margin-bottom: 1rem;
+      padding: 1rem 1.25rem;
+      justify-content: flex-start;
+    }
+    .tl-axis  { display: none; }
+    .tl-spacer { display: none; }
+    .tl-card  { grid-column: 1; margin: 0 0 1rem 0; }
+  }
 </style>
