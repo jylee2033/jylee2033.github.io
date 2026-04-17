@@ -32,10 +32,6 @@ const INITIAL = 5;
   </div>
 )}
 
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="" />
-</div>
-
 <script>
   const BATCH = 5;
 
@@ -46,10 +42,9 @@ const INITIAL = 5;
     grid.addEventListener('click', e => {
       const item = (e.target as HTMLElement).closest<HTMLElement>('.photo-item');
       if (!item) return;
-      const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
-      lbImg.src = item.dataset.src ?? '';
-      lbImg.alt = item.dataset.alt ?? '';
-      document.getElementById('lightbox')!.classList.add('open');
+      document.dispatchEvent(new CustomEvent('open-lightbox', {
+        detail: { src: item.dataset.src ?? '', alt: item.dataset.alt ?? '' }
+      }));
     });
 
     btn?.addEventListener('click', () => {
@@ -58,14 +53,6 @@ const INITIAL = 5;
       if (grid.querySelectorAll('.pg-hidden').length === 0) btn.remove();
     });
   });
-
-  function closeLightbox() {
-    document.getElementById('lightbox')!.classList.remove('open');
-  }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
-  });
-  (window as any).closeLightbox = closeLightbox;
 </script>
 
 <style>
@@ -109,23 +96,6 @@ const INITIAL = 5;
   .load-more:hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
-  }
-
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-  }
-  .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 90vw;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: var(--radius-md);
   }
   .empty { color: var(--color-text-muted); font-size: 0.9rem; }
 </style>

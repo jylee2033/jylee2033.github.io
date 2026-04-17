@@ -30,6 +30,12 @@ const { title, description = 'Jooyoung (Julia) Lee — Computing Science @ SFU' 
       <slot />
     </main>
     <Footer />
+
+    <!-- Global lightbox -->
+    <div id="global-lightbox" class="g-lightbox">
+      <img id="global-lightbox-img" src="" alt="" />
+    </div>
+
     <script>
       function initFadeIn() {
         const observer = new IntersectionObserver(
@@ -40,6 +46,44 @@ const { title, description = 'Jooyoung (Julia) Lee — Computing Science @ SFU' 
       }
       initFadeIn();
       document.addEventListener('astro:page-load', initFadeIn);
+
+      function initLightbox() {
+        const lb = document.getElementById('global-lightbox')!;
+        const lbImg = document.getElementById('global-lightbox-img') as HTMLImageElement;
+
+        document.addEventListener('open-lightbox', (e: Event) => {
+          const { src, alt } = (e as CustomEvent).detail;
+          lbImg.src = src;
+          lbImg.alt = alt;
+          lb.classList.add('open');
+        });
+
+        lb.addEventListener('click', () => lb.classList.remove('open'));
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape') lb.classList.remove('open');
+        });
+      }
+      initLightbox();
+      document.addEventListener('astro:page-load', initLightbox);
     </script>
+
+    <style>
+      .g-lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .g-lightbox.open { display: flex; }
+      .g-lightbox img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 12px;
+      }
+    </style>
   </body>
 </html>
