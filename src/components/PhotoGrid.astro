@@ -7,23 +7,28 @@ interface Props {
   photos: Photo[];
 }
 const { photos } = Astro.props;
+const INITIAL = 5;
 ---
 
 {photos.length === 0 ? (
   <p class="empty">Coming soon! 📸</p>
 ) : (
-  <div class="photo-grid">
-    {photos.map(photo => (
-      <button
-        class="photo-item"
-        data-src={photo.src}
-        data-alt={photo.alt}
-        onclick="openLightbox(this)"
-        aria-label={photo.alt}
-      >
-        <img src={photo.src} alt={photo.alt} loading="lazy" />
-      </button>
-    ))}
+  <div class="photo-grid-wrap">
+    <div class="photo-grid">
+      {photos.map((photo, i) => (
+        <button
+          class={`photo-item${i >= INITIAL ? ' pg-hidden' : ''}`}
+          data-src={photo.src}
+          data-alt={photo.alt}
+          aria-label={photo.alt}
+        >
+          <img src={photo.src} alt={photo.alt} loading="lazy" />
+        </button>
+      ))}
+    </div>
+    {photos.length > INITIAL && (
+      <button class="load-more">Load more</button>
+    )}
   </div>
 )}
 
@@ -32,19 +37,34 @@ const { photos } = Astro.props;
 </div>
 
 <script>
-  function openLightbox(btn: HTMLElement) {
-    const img = document.getElementById('lightbox-img') as HTMLImageElement;
-    img.src = (btn as HTMLElement).dataset.src ?? '';
-    img.alt = (btn as HTMLElement).dataset.alt ?? '';
-    document.getElementById('lightbox')!.classList.add('open');
-  }
+  const BATCH = 5;
+
+  document.querySelectorAll<HTMLElement>('.photo-grid-wrap').forEach(wrap => {
+    const grid = wrap.querySelector('.photo-grid')!;
+    const btn = wrap.querySelector<HTMLButtonElement>('.load-more');
+
+    grid.addEventListener('click', e => {
+      const item = (e.target as HTMLElement).closest<HTMLElement>('.photo-item');
+      if (!item) return;
+      const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
+      lbImg.src = item.dataset.src ?? '';
+      lbImg.alt = item.dataset.alt ?? '';
+      document.getElementById('lightbox')!.classList.add('open');
+    });
+
+    btn?.addEventListener('click', () => {
+      const hidden = Array.from(grid.querySelectorAll<HTMLElement>('.pg-hidden'));
+      hidden.slice(0, BATCH).forEach(el => el.classList.remove('pg-hidden'));
+      if (grid.querySelectorAll('.pg-hidden').length === 0) btn.remove();
+    });
+  });
+
   function closeLightbox() {
     document.getElementById('lightbox')!.classList.remove('open');
   }
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeLightbox();
   });
-  (window as any).openLightbox = openLightbox;
   (window as any).closeLightbox = closeLightbox;
 </script>
 
@@ -71,6 +91,25 @@ const { photos } = Astro.props;
     display: block;
   }
   .photo-item:hover img { transform: scale(1.04); }
+  .pg-hidden { display: none; }
+
+  .load-more {
+    display: block;
+    margin: 1rem auto 0;
+    background: none;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 0.5rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .load-more:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 
   .lightbox {
     display: none;
