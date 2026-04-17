@@ -197,18 +197,25 @@ const totalRows = 1 + items.length + (seeking ? 1 : 0);
 
   /* ── Mobile ── */
   @media (max-width: 600px) {
-    .timeline { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 48px 1fr; }
     .tl-edu {
+      grid-column: 1 / -1;
       grid-row: auto !important;
       border-radius: var(--radius-md);
       border: 1px solid var(--color-border);
       border-left: 4px solid var(--color-primary);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       padding: 1rem 1.25rem;
       justify-content: flex-start;
     }
-    .tl-axis  { display: none; }
+    .tl-axis {
+      grid-column: 1;
+      padding: 0.75rem 0;
+    }
+    .tl-axis--first { padding-top: 1rem; }
+    .tl-axis--seeking { padding-bottom: 1rem; }
+    .tl-badge { font-size: 0.65rem; padding: 0.1rem 0.35rem; }
     .tl-spacer { display: none; }
-    .tl-card  { grid-column: 1; margin: 0 0 1rem 0; }
+    .tl-card { grid-column: 2; margin: 0.75rem 0 0.75rem 0.75rem; }
   }
 </style>
